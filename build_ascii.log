@@ -1,0 +1,91 @@
+===================================================
+Cyber-Denoiser PRO VST3 Build Script (PowerShell)
+===================================================
+
+[OK] CMake is ready.
+[OK] Visual Studio C++ Tools found at: C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools
+
+===================================================
+Configuring the JUCE Project with CMake...
+===================================================
+-- Populating juce
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: C:/Users/dan/.gemini/antigravity/scratch/CyberDenoiserPro/build/_deps/juce-subbuild
+MSBuild version 17.14.40+3e7442088 for .NET Framework
+
+  Performing update step for 'juce-populate'
+  -- Already at requested tag: 8.0.0
+  No patch step for 'juce-populate'
+  No configure step for 'juce-populate'
+  No build step for 'juce-populate'
+  No install step for 'juce-populate'
+  No test step for 'juce-populate'
+  Completed 'juce-populate'
+-- Configuring juceaide
+-- Building juceaide
+-- Exporting juceaide
+-- Testing juceaide
+-- Finished setting up juceaide
+-- Configuring done (4.4s)
+-- Generating done (0.4s)
+-- Build files have been written to: C:/Users/dan/.gemini/antigravity/scratch/CyberDenoiserPro/build
+
+===================================================
+Compiling the VST3 Plugin...
+===================================================
+MSBuild version 17.14.40+3e7442088 for .NET Framework
+
+  Checking File Globs
+  CyberDenoiserProMono_rc_lib.vcxproj -> C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserProMono_rc_lib.dir\Release\CyberDenoiserProMono_rc_lib.lib
+  PluginProcessor.cpp
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(67,56): warning C4100: 'index': unreferenced parameter [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserProMono.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(68,67): warning C4100: 'index': unreferenced parameter [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserProMono.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(69,83): warning C4100: 'newName': unreferenced parameter [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserProMono.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(69,56): warning C4100: 'index': unreferenced parameter [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserProMono.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(71,71): warning C4100: 'samplesPerBlock': unreferenced parameter [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserProMono.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(71,55): warning C4100: 'sampleRate': unreferenced parameter [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserProMono.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(112,35): error C2511: 'double CyberDenoiserProProcessor::calc_ghost_g(double,double,double,double,double,double &)': overloaded member function not found in 'CyberDenoiserProProcessor' [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserProMono.vcxproj]
+      C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.h(5,7):
+      see declaration of 'CyberDenoiserProProcessor'
+  
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(118,5): warning C4390: ';': empty controlled statement found; is this the intent? [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserProMono.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(119,5): warning C4390: ';': empty controlled statement found; is this the intent? [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserProMono.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(229,59): error C2660: 'CyberDenoiserProProcessor::calc_ghost_g': function does not take 6 arguments [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserProMono.vcxproj]
+      C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.h(70,12):
+      see declaration of 'CyberDenoiserProProcessor::calc_ghost_g'
+      C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(229,59):
+      while trying to match the argument list '(double, float, float, float, float, double)'
+  
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(274,42): warning C4127: conditional expression is constant [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserProMono.vcxproj]
+      C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(274,42):
+      consider using 'if constexpr' statement instead
+  
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(277,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserProMono.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(291,34): warning C4127: conditional expression is constant [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserProMono.vcxproj]
+      C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(291,34):
+      consider using 'if constexpr' statement instead
+  
+  juce_vst3_helper.vcxproj -> C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\Release\juce_vst3_helper.exe
+  CyberDenoiserPro_rc_lib.vcxproj -> C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_rc_lib.dir\Release\CyberDenoiserPro_rc_lib.lib
+  PluginProcessor.cpp
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(67,56): warning C4100: 'index': unreferenced parameter [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(68,67): warning C4100: 'index': unreferenced parameter [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(69,83): warning C4100: 'newName': unreferenced parameter [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(69,56): warning C4100: 'index': unreferenced parameter [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(71,71): warning C4100: 'samplesPerBlock': unreferenced parameter [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(71,55): warning C4100: 'sampleRate': unreferenced parameter [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(112,35): error C2511: 'double CyberDenoiserProProcessor::calc_ghost_g(double,double,double,double,double,double &)': overloaded member function not found in 'CyberDenoiserProProcessor' [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro.vcxproj]
+      C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.h(5,7):
+      see declaration of 'CyberDenoiserProProcessor'
+  
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(118,5): warning C4390: ';': empty controlled statement found; is this the intent? [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(119,5): warning C4390: ';': empty controlled statement found; is this the intent? [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro.vcxproj]
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(229,59): error C2660: 'CyberDenoiserProProcessor::calc_ghost_g': function does not take 6 arguments [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro.vcxproj]
+      C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.h(70,12):
+      see declaration of 'CyberDenoiserProProcessor::calc_ghost_g'
+      C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(229,59):
+      while trying to match the argument list '(double, float, float, float, float, double)'
+  
+C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\Source\PluginProcessor.cpp(277,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro.vcxproj]
+[ERROR] Build failed.

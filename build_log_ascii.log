@@ -1,0 +1,92 @@
+===================================================
+Cyber-Denoiser PRO VST3 Build Script (PowerShell)
+===================================================
+
+[OK] CMake is ready.
+[OK] Visual Studio C++ Tools found at: C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools
+
+===================================================
+Configuring the JUCE Project with CMake...
+===================================================
+-- Populating juce
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: C:/Users/dan/.gemini/antigravity/scratch/CyberDenoiserPro/build/_deps/juce-subbuild
+MSBuild version 17.14.40+3e7442088 for .NET Framework
+
+  Performing update step for 'juce-populate'
+  -- Already at requested tag: 8.0.0
+  No patch step for 'juce-populate'
+  No configure step for 'juce-populate'
+  No build step for 'juce-populate'
+  No install step for 'juce-populate'
+  No test step for 'juce-populate'
+  Completed 'juce-populate'
+-- Configuring juceaide
+-- Building juceaide
+-- Exporting juceaide
+-- Testing juceaide
+-- Finished setting up juceaide
+-- Configuring done (4.5s)
+-- Generating done (0.2s)
+-- Build files have been written to: C:/Users/dan/.gemini/antigravity/scratch/CyberDenoiserPro/build
+
+===================================================
+Compiling the VST3 Plugin...
+===================================================
+MSBuild version 17.14.40+3e7442088 for .NET Framework
+
+  Checking File Globs
+  CyberDenoiserPro_rc_lib.vcxproj -> C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_rc_lib.dir\Release\CyberDenoiserPro_rc_lib.lib
+  CyberDenoiserPro.vcxproj -> C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_artefacts\Release\Cyber-Denoiser PRO_SharedCode.lib
+  juce_vst3_helper.vcxproj -> C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\Release\juce_vst3_helper.exe
+  CyberDenoiserPro_VST3.vcxproj -> C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_artefacts\Release\VST3\Cyber-Denoiser PRO.vst3\Contents\x86_64-win\Cyber-Denoiser PRO.vst3
+  removing moduleinfo.json
+  -- Destination C:\Program Files\Common Files/VST3/Cyber-Denoiser PRO.vst3 exists, overwriting
+  -- Up-to-date: C:\Program Files\Common Files/VST3/Cyber-Denoiser PRO.vst3
+  -- Up-to-date: C:\Program Files\Common Files/VST3/Cyber-Denoiser PRO.vst3/Contents
+  -- Installing: C:\Program Files\Common Files/VST3/Cyber-Denoiser PRO.vst3/Contents/Resources
+  -- Installing: C:\Program Files\Common Files/VST3/Cyber-Denoiser PRO.vst3/Contents/Resources/moduleinfo.json
+  -- Up-to-date: C:\Program Files\Common Files/VST3/Cyber-Denoiser PRO.vst3/Contents/x86_64-win
+  -- Installing: C:\Program Files\Common Files/VST3/Cyber-Denoiser PRO.vst3/Contents/x86_64-win/Cyber-Denoiser PRO.vst3
+  CMake Error at _deps/juce-src/extras/Build/CMake/copyDir.cmake:45 (file):
+    file INSTALL cannot copy file
+    "C:/Users/dan/.gemini/antigravity/scratch/CyberDenoiserPro/build/CyberDenoiserPro_artefacts/Release/VST3/Cyber-Denoiser
+    PRO.vst3/Contents/x86_64-win/Cyber-Denoiser PRO.vst3" to "C:\Program
+    Files\Common Files/VST3/Cyber-Denoiser
+    PRO.vst3/Contents/x86_64-win/Cyber-Denoiser PRO.vst3": Permission denied.
+  
+  
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: The command "setlocal [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: "C:\Program Files\CMake\bin\cmake.exe" -E echo "removing moduleinfo.json" [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: "C:\Program Files\CMake\bin\cmake.exe" -E remove -f "C:/Users/dan/.gemini/antigravity/scratch/CyberDenoiserPro/build/CyberDenoiserPro_artefacts/Release/VST3/Cyber-Denoiser PRO.vst3/Contents/moduleinfo.json" "C:/Users/dan/.gemini/antigravity/scratch/CyberDenoiserPro/build/CyberDenoiserPro_artefacts/Release/VST3/Cyber-Denoiser PRO.vst3/Contents/Resources/moduleinfo.json" [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmEnd [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmErrorLevel [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: exit /b %1 [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmDone [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :VCEnd [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: setlocal [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: "C:\Program Files\CMake\bin\cmake.exe" -E make_directory "C:/Users/dan/.gemini/antigravity/scratch/CyberDenoiserPro/build/CyberDenoiserPro_artefacts/Release/VST3/Cyber-Denoiser PRO.vst3/Contents/Resources" [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: Release\juce_vst3_helper.exe -create -version 1.4.0 -path "C:/Users/dan/.gemini/antigravity/scratch/CyberDenoiserPro/build/CyberDenoiserPro_artefacts/Release/VST3/Cyber-Denoiser PRO.vst3" -output "C:/Users/dan/.gemini/antigravity/scratch/CyberDenoiserPro/build/CyberDenoiserPro_artefacts/Release/VST3/Cyber-Denoiser PRO.vst3/Contents/Resources/moduleinfo.json" [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmEnd [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmErrorLevel [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: exit /b %1 [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmDone [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :VCEnd [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: setlocal [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: "C:\Program Files\CMake\bin\cmake.exe" "-Dsrc=C:/Users/dan/.gemini/antigravity/scratch/CyberDenoiserPro/build/CyberDenoiserPro_artefacts/Release/VST3/Cyber-Denoiser PRO.vst3" "-Ddest=C:\Program Files\Common Files/VST3" -P C:/Users/dan/.gemini/antigravity/scratch/CyberDenoiserPro/build/_deps/juce-src/extras/Build/CMake/copyDir.cmake [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmEnd [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmErrorLevel [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: exit /b %1 [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmDone [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :VCEnd [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :VCEnd" exited with code 1. [C:\Users\dan\.gemini\antigravity\scratch\CyberDenoiserPro\build\CyberDenoiserPro_VST3.vcxproj]
+[ERROR] Build failed.

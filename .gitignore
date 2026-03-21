@@ -1,0 +1,5 @@
+build/
+build_error.log
+build_ascii.log
+build_log.txt
+*.exe
