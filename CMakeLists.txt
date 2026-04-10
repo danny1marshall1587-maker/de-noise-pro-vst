@@ -46,6 +46,7 @@ set_target_properties(CyberDenoiserPro PROPERTIES
 )
 
 if(UNIX AND NOT APPLE)
+    include(FindPkgConfig)
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
     target_include_directories(CyberDenoiserPro PRIVATE ${GTK3_INCLUDE_DIRS})

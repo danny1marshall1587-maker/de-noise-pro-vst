@@ -195,18 +195,14 @@ void CyberDenoiserAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer
                 currentGains[ch][i] += (targetGains[ch][i] - currentGains[ch][i]) * smF;
             }
 
-            // 4. Reconstruction (Cross-Platform)
+            // 4. Reconstruction (Universal High-Precision Loop)
             float* bandPointer = b;
             float* gainPointer = currentGains[ch];
             
-#if JUCE_MAC
-            // High-speed M-series hardware acceleration
-            vDSP_dotpr (bandPointer, 1, gainPointer, 1, &outSum, 10);
-#else
-            // Standard high-precision fallback for Windows/Linux
-            for (int i = 0; i < 10; ++i)
+            outSum = 0;
+            for (int i = 0; i < 10; ++i) {
                 outSum += bandPointer[i] * gainPointer[i];
-#endif
+            }
 
             data[s] = isListenNoise ? (s0 - outSum) : outSum;
         }
