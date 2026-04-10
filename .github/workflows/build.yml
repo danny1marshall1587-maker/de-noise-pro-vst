@@ -3,6 +3,7 @@ name: Multi-Platform Plugin Build
 on:
   push:
     branches: [ main, master ]
+    tags: [ 'v*' ]
   pull_request:
     branches: [ main ]
 
@@ -81,3 +82,49 @@ jobs:
         with:
           name: CyberDenoiser-Pro-Linux
           path: build/CyberDenoiserPro_artefacts/Release/
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download MacOS Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: CyberDenoiser-Pro-MacOS
+          path: Mac
+
+      - name: Download Windows Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: CyberDenoiser-Pro-Windows
+          path: Win
+
+      - name: Download Linux Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: CyberDenoiser-Pro-Linux
+          path: Linux
+
+      - name: Package ZIPs
+        run: |
+          zip -r Cyber-Denoiser-Pro-MacOS.zip Mac/
+          zip -r Cyber-Denoiser-Pro-Windows.zip Win/
+          zip -r Cyber-Denoiser-Pro-Linux.zip Linux/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            Cyber-Denoiser-Pro-MacOS.zip
+            Cyber-Denoiser-Pro-Windows.zip
+            Cyber-Denoiser-Pro-Linux.zip
+          body: |
+            Cyber-Denoiser PRO v2.1
+            
+            - M-Series Hardware Optimization (vDSP)
+            - Liquid Silk Animated GUI
+            - Gated Clean Metering
+            - Universal 2 (arm64 + x86_64) support for Mac
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
