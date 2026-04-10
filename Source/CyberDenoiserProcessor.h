@@ -4,7 +4,9 @@
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <vector>
 #include <cmath>
-#include <Accelerate/Accelerate.h>
+#if JUCE_MAC
+  #include <Accelerate/Accelerate.h>
+#endif
 #include "ChipDetector.h"
 
 /**

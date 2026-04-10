@@ -1,8 +1,10 @@
 #pragma once
 
 #include <juce_core/juce_core.h>
-#include <sys/types.h>
-#include <sys/sysctl.h>
+#if JUCE_MAC
+  #include <sys/types.h>
+  #include <sys/sysctl.h>
+#endif
 #include <string>
 
 /**
