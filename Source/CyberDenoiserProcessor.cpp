@@ -211,11 +211,11 @@ void CyberDenoiserAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer
             data[s] = isListenNoise ? (s0 - outSum) : outSum;
         }
 
-        // Update UI metering data once per block per channel (channel 0 for UI)
+        // 5. Update Atomically for UI (Channel 0 for visualization)
         if (ch == 0) {
             for (int i = 0; i < 10; ++i) {
-                lastLevels[i].store (levelStates[i][0]);
-                lastReductions[i].store (currentGains[i][0]);
+                lastLevels[i].store (levelStates[0][i]);
+                lastReductions[i].store (currentGains[0][i]);
             }
         }
     }
