@@ -40,7 +40,17 @@ juce_add_plugin(CyberDenoiserPro
     AU_DESCRIPTION "Professional 10-Band Forensic Denoiser"
 )
 
-set_target_properties(CyberDenoiserPro PROPERTIES JUCE_VST3_CAN_REPLACE_VST2 OFF)
+set_target_properties(CyberDenoiserPro PROPERTIES 
+    JUCE_VST3_CAN_REPLACE_VST2 OFF
+    JUCE_WEB_BROWSER OFF
+)
+
+if(UNIX AND NOT APPLE)
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
+    target_include_directories(CyberDenoiserPro PRIVATE ${GTK3_INCLUDE_DIRS})
+    target_link_libraries(CyberDenoiserPro PRIVATE ${GTK3_LIBRARIES})
+endif()
 
 # 3. Add Source Files
 target_sources(CyberDenoiserPro PRIVATE
