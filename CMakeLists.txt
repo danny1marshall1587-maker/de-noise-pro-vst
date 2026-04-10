@@ -5,9 +5,13 @@ if(APPLE)
     set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0" CACHE STRING "" FORCE)
 endif()
 
-project(CyberDenoiserPro VERSION 1.4 LANGUAGES CXX C OBJC OBJCXX)
+if(APPLE)
+    project(CyberDenoiserPro VERSION 1.4 LANGUAGES CXX C OBJC OBJCXX)
+else()
+    project(CyberDenoiserPro VERSION 1.4 LANGUAGES CXX C)
+endif()
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 1. Fetch JUCE automatically

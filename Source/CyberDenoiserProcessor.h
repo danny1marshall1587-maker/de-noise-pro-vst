@@ -81,15 +81,16 @@ private:
 
     // Filter states (10 bands + low-cut + high-cut)
     // Using 128-byte aligned memory for M-series cache efficiency
-    float lpStates[9][2] __attribute__((aligned(128))); 
-    float hpCutStat[2]   __attribute__((aligned(128)));   
-    float lpCutStat[2]   __attribute__((aligned(128)));   
+    // Layout changed to [Channel][Band] for contiguous vDSP access
+    float lpStates[2][9]     __attribute__((aligned(128))); 
+    float hpCutStat[2]       __attribute__((aligned(128)));   
+    float lpCutStat[2]       __attribute__((aligned(128)));   
     
-    // Level detection
-    float levelStates[10][2] __attribute__((aligned(128)));
-    float targetGains[10][2] __attribute__((aligned(128)));
-    float currentGains[10][2] __attribute__((aligned(128)));
-    int hystStates[10][2] __attribute__((aligned(128)));
+    // Level detection [Channel][Band]
+    float levelStates[2][10] __attribute__((aligned(128)));
+    float targetGains[2][10] __attribute__((aligned(128)));
+    float currentGains[2][10] __attribute__((aligned(128)));
+    int hystStates[2][10]    __attribute__((aligned(128)));
 
     // For visualization and local sync (thread-safe for UI)
     std::atomic<float> lastLevels[10];

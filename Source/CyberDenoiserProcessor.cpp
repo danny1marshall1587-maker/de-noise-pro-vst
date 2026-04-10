@@ -66,17 +66,19 @@ CyberDenoiserAudioProcessor::~CyberDenoiserAudioProcessor()
 
 void CyberDenoiserAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    for (int i = 0; i < 9; ++i) { 
-        lpStates[i][0] = 0; lpStates[i][1] = 0;
+    for (int ch = 0; ch < 2; ++ch) { 
+        for (int i = 0; i < 9; ++i) lpStates[ch][i] = 0;
+        for (int i = 0; i < 10; ++i) {
+            levelStates[ch][i] = 0; 
+            targetGains[ch][i] = 1;
+            currentGains[ch][i] = 1;
+            hystStates[ch][i] = 0;
+        }
     }
     hpCutStat[0] = hpCutStat[1] = 0;
     lpCutStat[0] = lpCutStat[1] = 0;
 
     for (int i = 0; i < 10; ++i) { 
-        levelStates[i][0] = 0; levelStates[i][1] = 0; 
-        targetGains[i][0] = 1; targetGains[i][1] = 1;
-        currentGains[i][0] = 1; currentGains[i][1] = 1;
-        hystStates[i][0] = 0; hystStates[i][1] = 0;
         peakLevels[i].store (1e-6f);
         lastLevels[i].store (0.0f);
         lastReductions[i].store (1.0f);
@@ -167,20 +169,20 @@ void CyberDenoiserAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer
             float b[10];
             float currentIn = s0;
             for (int i = 0; i < 9; ++i) {
-                lpStates[i][ch] += (currentIn - lpStates[i][ch]) * bCoeffs[i];
-                b[i] = (i == 0) ? lpStates[0][ch] : lpStates[i][ch] - lpStates[i-1][ch];
+                lpStates[ch][i] += (currentIn - lpStates[ch][i]) * bCoeffs[i];
+                b[i] = (i == 0) ? lpStates[ch][0] : lpStates[ch][i] - lpStates[ch][i-1];
             }
-            b[9] = currentIn - lpStates[8][ch];
+            b[9] = currentIn - lpStates[ch][8];
 
             // 3. Level Detection and Gain Update
             for (int i = 0; i < 10; ++i) {
                 float r;
                 if (isRMS) {
-                    levelStates[i][ch] += (b[i] * b[i] - levelStates[i][ch]) * rmsF;
-                    r = std::sqrt (std::max (0.0f, levelStates[i][ch]));
+                    levelStates[ch][i] += (b[i] * b[i] - levelStates[ch][i]) * rmsF;
+                    r = std::sqrt (std::max (0.0f, levelStates[ch][i]));
                 } else {
-                    levelStates[i][ch] = levelStates[i][ch] * relF + std::abs (b[i]) * (1.0f - relF);
-                    r = levelStates[i][ch];
+                    levelStates[ch][i] = levelStates[ch][i] * relF + std::abs (b[i]) * (1.0f - relF);
+                    r = levelStates[ch][i];
                 }
 
                 if (learnActive.load()) {
@@ -188,9 +190,9 @@ void CyberDenoiserAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer
                     if (r > currentPeak) peakLevels[i].store (r);
                 }
 
-                float tg = calcGhostG (r, thresholds[i]->load(), hys, grad, floorV, hystStates[i][ch]);
-                targetGains[i][ch] = targetGains[i][ch] * attF + tg * (1.0f - attF);
-                currentGains[i][ch] += (targetGains[i][ch] - currentGains[i][ch]) * smF;
+                float tg = calcGhostG (r, thresholds[i]->load(), hys, grad, floorV, hystStates[ch][i]);
+                targetGains[ch][i] = targetGains[ch][i] * attF + tg * (1.0f - attF);
+                currentGains[ch][i] += (targetGains[ch][i] - currentGains[ch][i]) * smF;
             }
 
             // 4. Reconstruction (Cross-Platform)
