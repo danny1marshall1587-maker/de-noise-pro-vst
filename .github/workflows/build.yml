@@ -29,7 +29,8 @@ jobs:
           sudo apt-get install -y libasound2-dev libjack-jackd2-dev \
             libx11-dev libxcomposite-dev libxcursor-dev libxinerama-dev \
             libxext-dev libxrender-dev libxrandr-dev libglu1-mesa-dev \
-            mesa-common-dev
+            mesa-common-dev libfreetype6-dev libfontconfig1-dev \
+            libcurl4-openssl-dev libwebkit2gtk-4.0-dev
 
       # CMake is pre-installed on GitHub runners. Manual setup step removed for stability.
 
@@ -44,10 +45,7 @@ jobs:
 
       - name: Configure CMake (Windows)
         if: runner.os == 'Windows'
-        run: |
-          cmake -B build \
-            -DCMAKE_BUILD_TYPE=Release \
-            -G "Visual Studio 17 2022" -A x64
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 17 2022" -A x64
 
       - name: Configure CMake (Linux)
         if: runner.os == 'Linux'

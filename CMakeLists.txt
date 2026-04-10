@@ -38,6 +38,7 @@ juce_add_plugin(CyberDenoiserPro
     FORMATS AU VST3
     PRODUCT_NAME "Cyber-Denoiser PRO"
     AU_DESCRIPTION "Professional 10-Band Forensic Denoiser"
+    VST3_CAN_REPLACE_VST2 OFF
 )
 
 # 3. Add Source Files
