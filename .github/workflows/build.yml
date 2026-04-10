@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
@@ -31,10 +31,7 @@ jobs:
             libxext-dev libxrender-dev libxrandr-dev libglu1-mesa-dev \
             mesa-common-dev
 
-      - name: Setup CMake
-        uses: jason-schmidt/setup-cmake@v2
-        with:
-          cmake-version: '3.25.x'
+      # CMake is pre-installed on GitHub runners. Manual setup step removed for stability.
 
       - name: Configure CMake (MacOS)
         if: runner.os == 'macOS'
@@ -64,21 +61,21 @@ jobs:
 
       - name: Upload Artifacts (MacOS)
         if: runner.os == 'macOS'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: CyberDenoiser-Pro-MacOS
           path: build/CyberDenoiserPro_artefacts/Release/
           
       - name: Upload Artifacts (Windows)
         if: runner.os == 'Windows'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: CyberDenoiser-Pro-Windows
           path: build/CyberDenoiserPro_artefacts/Release/
 
       - name: Upload Artifacts (Linux)
         if: runner.os == 'Linux'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: CyberDenoiser-Pro-Linux
           path: build/CyberDenoiserPro_artefacts/Release/
@@ -89,19 +86,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download MacOS Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: CyberDenoiser-Pro-MacOS
           path: Mac
 
       - name: Download Windows Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: CyberDenoiser-Pro-Windows
           path: Win
 
       - name: Download Linux Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: CyberDenoiser-Pro-Linux
           path: Linux
@@ -113,7 +110,7 @@ jobs:
           zip -r Cyber-Denoiser-Pro-Linux.zip Linux/
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             Cyber-Denoiser-Pro-MacOS.zip
