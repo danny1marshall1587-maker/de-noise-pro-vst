@@ -80,17 +80,16 @@ private:
     std::atomic<float>* masterThreshold;
 
     // Filter states (10 bands + low-cut + high-cut)
-    // Using 128-byte aligned memory for M-series cache efficiency
     // Layout changed to [Channel][Band] for contiguous vDSP access
-    alignas(128) float lpStates[2][9]; 
-    alignas(128) float hpCutStat[2];   
-    alignas(128) float lpCutStat[2];   
+    float lpStates[2][9]; 
+    float hpCutStat[2];   
+    float lpCutStat[2];   
     
     // Level detection [Channel][Band]
-    alignas(128) float levelStates[2][10];
-    alignas(128) float targetGains[2][10];
-    alignas(128) float currentGains[2][10];
-    alignas(128) int hystStates[2][10];
+    float levelStates[2][10];
+    float targetGains[2][10];
+    float currentGains[2][10];
+    int hystStates[2][10];
 
     // For visualization and local sync (thread-safe for UI)
     std::atomic<float> lastLevels[10];
