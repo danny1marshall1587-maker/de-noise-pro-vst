@@ -1,0 +1,32 @@
+# Build artifacts
+/build/
+/bin/
+/obj/
+*.artefacts/
+*.a
+*.lib
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+*.exe
+*.vst3
+*.component
+*.app
+*.dmg
+
+# IDE and OS files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.user
+CMakeCache.txt
+CMakeFiles/
+CMakeSettings.json
+Makefile
+
+# JUCE files
+/JUCE/
+/modules/

@@ -1,0 +1,83 @@
+name: Multi-Platform Plugin Build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Install Linux Dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libasound2-dev libjack-jackd2-dev \
+            libx11-dev libxcomposite-dev libxcursor-dev libxinerama-dev \
+            libxext-dev libxrender-dev libxrandr-dev libglu1-mesa-dev \
+            mesa-common-dev
+
+      - name: Setup CMake
+        uses: jason-schmidt/setup-cmake@v2
+        with:
+          cmake-version: '3.25.x'
+
+      - name: Configure CMake (MacOS)
+        if: runner.os == 'macOS'
+        run: |
+          cmake -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
+            -DCMAKE_OSX_DEPLOYMENT_TARGET="11.0" \
+            -G "Unix Makefiles"
+
+      - name: Configure CMake (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          cmake -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -G "Visual Studio 17 2022" -A x64
+
+      - name: Configure CMake (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          cmake -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -G "Unix Makefiles"
+
+      - name: Build Plugins
+        run: cmake --build build --config Release
+
+      - name: Upload Artifacts (MacOS)
+        if: runner.os == 'macOS'
+        uses: actions/upload-artifact@v3
+        with:
+          name: CyberDenoiser-Pro-MacOS
+          path: build/CyberDenoiserPro_artefacts/Release/
+          
+      - name: Upload Artifacts (Windows)
+        if: runner.os == 'Windows'
+        uses: actions/upload-artifact@v3
+        with:
+          name: CyberDenoiser-Pro-Windows
+          path: build/CyberDenoiserPro_artefacts/Release/
+
+      - name: Upload Artifacts (Linux)
+        if: runner.os == 'Linux'
+        uses: actions/upload-artifact@v3
+        with:
+          name: CyberDenoiser-Pro-Linux
+          path: build/CyberDenoiserPro_artefacts/Release/
