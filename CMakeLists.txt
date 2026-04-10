@@ -40,7 +40,7 @@ juce_add_plugin(CyberDenoiserPro
     AU_DESCRIPTION "Professional 10-Band Forensic Denoiser"
 )
 
-juce_set_vst2_can_replace_vst3(CyberDenoiserPro OFF)
+set_target_properties(CyberDenoiserPro PROPERTIES JUCE_VST3_CAN_REPLACE_VST2 OFF)
 
 # 3. Add Source Files
 target_sources(CyberDenoiserPro PRIVATE
