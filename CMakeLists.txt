@@ -49,8 +49,8 @@ if(UNIX AND NOT APPLE)
     include(FindPkgConfig)
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
-    target_include_directories(CyberDenoiserPro PRIVATE ${GTK3_INCLUDE_DIRS})
-    target_link_libraries(CyberDenoiserPro PRIVATE ${GTK3_LIBRARIES})
+    target_include_directories(CyberDenoiserPro PUBLIC ${GTK3_INCLUDE_DIRS})
+    target_link_libraries(CyberDenoiserPro PUBLIC ${GTK3_LIBRARIES})
 endif()
 
 # 3. Add Source Files
