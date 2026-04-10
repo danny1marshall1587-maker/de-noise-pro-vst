@@ -43,6 +43,7 @@ juce_add_plugin(CyberDenoiserPro
 target_compile_definitions(CyberDenoiserPro PRIVATE 
     JUCE_VST3_CAN_REPLACE_VST2=0
     JUCE_WEB_BROWSER=0
+    JUCE_USE_CURL=0
 )
 
 if(UNIX AND NOT APPLE)
@@ -50,7 +51,7 @@ if(UNIX AND NOT APPLE)
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
     target_include_directories(CyberDenoiserPro PUBLIC ${GTK3_INCLUDE_DIRS})
-    target_link_libraries(CyberDenoiserPro PUBLIC ${GTK3_LIBRARIES})
+    target_link_libraries(CyberDenoiserPro PUBLIC ${GTK3_LIBRARIES} dl pthread)
 endif()
 
 # 3. Add Source Files
