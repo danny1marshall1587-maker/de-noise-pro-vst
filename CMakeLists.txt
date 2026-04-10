@@ -36,13 +36,13 @@ juce_add_plugin(CyberDenoiserPro
     PLUGIN_MANUFACTURER_CODE DANM
     PLUGIN_CODE CDBP
     FORMATS AU VST3
-    PRODUCT_NAME "Cyber-Denoiser PRO"
+    PRODUCT_NAME "CyberDenoiserPro"
     AU_DESCRIPTION "Professional 10-Band Forensic Denoiser"
 )
 
-set_target_properties(CyberDenoiserPro PROPERTIES 
-    JUCE_VST3_CAN_REPLACE_VST2 OFF
-    JUCE_WEB_BROWSER OFF
+target_compile_definitions(CyberDenoiserPro PRIVATE 
+    JUCE_VST3_CAN_REPLACE_VST2=0
+    JUCE_WEB_BROWSER=0
 )
 
 if(UNIX AND NOT APPLE)
