@@ -1,0 +1,103 @@
+name: Multi-Platform Plugin Build
+
+on:
+  push:
+    branches: [ main, master ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  PROJECT_NAME: CyberDenoiserPro
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Linux Dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libasound2-dev libjack-jackd2-dev \
+            libx11-dev libxcomposite-dev libxcursor-dev libxinerama-dev \
+            libxext-dev libxrender-dev libxrandr-dev libglu1-mesa-dev \
+            mesa-common-dev libfreetype6-dev libfontconfig1-dev \
+            libcurl4-openssl-dev libwebkit2gtk-4.1-dev libgtk-3-dev \
+            libx11-xcb-dev libxcb-util-dev libxcb-cursor-dev \
+            libxcb-keysyms1-dev libxcb-xinerama0-dev libxcb-render0-dev \
+            libxcb-shape0-dev libxcb-randr0-dev
+
+      - name: Configure CMake
+        run: |
+          cmake -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            ${{ runner.os == 'macOS' && '-DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" -DCMAKE_OSX_DEPLOYMENT_TARGET="11.0"' || '' }}
+
+      - name: Build Plugins
+        run: cmake --build build --config Release -j 4
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.PROJECT_NAME }}-${{ runner.os }}
+          path: build/${{ env.PROJECT_NAME }}_artefacts/Release/
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download MacOS Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.PROJECT_NAME }}-macOS
+          path: Mac
+
+      - name: Download Windows Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.PROJECT_NAME }}-Windows
+          path: Win
+
+      - name: Download Linux Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.PROJECT_NAME }}-Linux
+          path: Linux
+
+      - name: Package ZIPs
+        run: |
+          zip -r Cyber-Denoiser-Pro-MacOS.zip Mac/
+          zip -r Cyber-Denoiser-Pro-Windows.zip Win/
+          zip -r Cyber-Denoiser-Pro-Linux.zip Linux/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            Cyber-Denoiser-Pro-MacOS.zip
+            Cyber-Denoiser-Pro-Windows.zip
+            Cyber-Denoiser-Pro-Linux.zip
+          body: |
+            Cyber-Denoiser PRO Release
+            
+            - Windows VST3
+            - macOS AU & VST3 (Universal Binary)
+            - Linux VST3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
