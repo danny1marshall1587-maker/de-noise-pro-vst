@@ -6,9 +6,9 @@ if(APPLE)
 endif()
 
 if(APPLE)
-    project(CyberDenoiserPro VERSION 1.4 LANGUAGES CXX C OBJC OBJCXX)
+    project(CyberDenoiserPro VERSION 2.0.0 LANGUAGES CXX C OBJC OBJCXX)
 else()
-    project(CyberDenoiserPro VERSION 1.4 LANGUAGES CXX C)
+    project(CyberDenoiserPro VERSION 2.0.0 LANGUAGES CXX C)
 endif()
 
 set(CMAKE_CXX_STANDARD 20)
